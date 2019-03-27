@@ -1,0 +1,135 @@
+
+@mixin mq($value)
+    @if ($value == computer)
+        @media (min-width: 700px)
+            @content
+
+
+.rowVisitor
+    position: relative
+    width: 100%
+    padding: 1rem .5rem
+    display: grid
+    grid-template-columns: 1fr
+
+    @include mq(computer)
+        grid-template-columns: repeat(2, 1fr)
+        grid-template-rows:  180px 1fr
+        grid-template-areas: 'head head''left right' 'left right'
+   
+    justify-content: center
+
+    header
+        width: 100%
+        display: flex
+        flex-direction: column
+
+        @include mq(computer)
+            grid-area: head
+
+        h3 
+            width: 100%
+            text-align: center
+            border-bottom: 2px solid rgba(black, .5)
+
+        .search
+            position: relative
+            border-bottom: 2px solid rgba(black, .5)
+            width: 100%
+            display: flex
+            margin-bottom: 1rem
+            
+            form 
+                width: 80%
+            div
+                button
+                    margin-top: 2rem
+
+   
+    // .leftDiv, .rightDiv
+        position: relative
+        width: 100%
+        display: flex
+
+        
+        .lists
+            width: 90%
+            align-content: center
+
+            ul.ulHeader
+                margin-bottom: .5rem
+                text-align: center
+
+                li 
+                    width: 100%
+                    border: 1px solid rgba(52, 58, 64, 1)
+                    
+            ul.ulGenerated
+                text-align: center
+                // border-top: 1px solid rgba(52, 58, 64, 1)
+                border-bottom: 1px solid rgba(52, 58, 64, 1)
+                cursor: pointer
+
+                &:hover
+                    background-color: rgba(114, 127, 144, .1)
+
+                li 
+                    width: 100%
+
+            .uls
+                list-style-type: none
+                margin: 0
+                padding: 0
+                width: 100%
+                display: flex
+        
+        div.commands
+            width: 10%
+            list-style: none
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            padding: 0.5rem
+            height: auto
+
+            ul.ulCommands
+                list-style: none
+                padding-left: 0 !important
+                
+                li.liCommands
+                    font-size: 1.7rem
+                    
+                
+.logged
+    margin-bottom: 1rem
+    border-bottom: 2px solid rgba(black, .5)
+
+    @include mq(computer)
+        grid-area: left
+        margin-bottom: 0
+        border-bottom: 1px solid transparent
+
+.loggedOut
+    @include mq(computer)
+        grid-area: right
+                    
+                    
+@media (min-width: 576px)
+    .container 
+        max-width: 90%
+        padding: 0
+        margin: 0
+
+@media (min-width: 992px)
+    .container 
+        max-width: 1000px 
+        margin: 0 auto !important              
+                    
+                
+                
+
+
+
+
+  

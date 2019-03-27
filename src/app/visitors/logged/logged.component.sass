@@ -1,0 +1,69 @@
+
+#loggedDiv
+
+    .leftDiv
+        position: relative
+        width: 100%
+        display: flex
+
+        
+        .lists
+            width: 90%
+            align-content: center
+
+            ul.ulHeader
+                margin-bottom: .5rem
+                text-align: center
+
+                li 
+                    width: 100%
+                    border: 1px solid rgba(52, 58, 64, 1)
+                    
+            ul.ulGenerated
+                text-align: center
+                // border-top: 1px solid rgba(52, 58, 64, 1)
+                border-bottom: 1px solid rgba(52, 58, 64, 1)
+                cursor: pointer
+
+                &:hover
+                    background-color: rgba(114, 127, 144, .1)
+
+                li 
+                    width: 100%
+
+            .uls
+                list-style-type: none
+                margin: 0
+                padding: 0
+                width: 100%
+                display: flex
+        
+        div.commands
+            width: 10%
+            list-style: none
+            display: flex
+            flex-direction: column
+            justify-content: center
+            align-items: center
+            padding: 0 1.5rem
+            height: auto
+
+            ul.ulCommands
+                list-style: none
+                padding-left: 0 !important
+                
+                li.liCommands
+                    font-size: 1.7rem
+
+                    a 
+                        cursor: pointer
+                        color: rgba(22, 127, 251, 1)
+
+                        &:hover
+                            color: #0056b3
+
+
+// classes 
+
+.ulSelected
+    background-color: rgba(114, 127, 144, .4)

@@ -1,0 +1,53 @@
+
+<div class="row prebookUserRow">
+  <div class="col-md-12">
+    <h3>Vitors Details</h3>
+
+    <form [formGroup]="myUserForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="userName">Name</label>
+        <input type="text" class="form-control" id="userName" formControlName="userName">
+      </div>
+
+      <div class="form-group">
+        <label for="companyName">Company</label>
+        <input type="text" class="form-control" id="companyName" formControlName="companyName">
+      </div>
+      
+      <div class="form-group">
+        <label for="userEmail">Email</label>
+        <input type="email" class="form-control" id="userEmail" formControlName="userEmail">
+      </div>
+
+      <div class="form-group">
+        <label for="userPhone">Phone</label>
+        <input type="text" class="form-control" id="userPhone" formControlName="userPhone">
+      </div>
+      
+      <div class="form-group">
+        <label for="hostName">Visitor's Host</label>
+        <input type="text" class="form-control" id="hostName" formControlName="hostName">
+
+        <div class="row" *ngIf=" visitedThisHostAmount !== 0 ">
+            <p class="text-center visitsHeader">{{hostNameValue}} Latest Visitor </p>
+          <div class="col-md-12">
+            <div class="list-group" *ngFor="let hostVisitors of visitedThisHost; let i = index">
+              <a href="#" class="list-group-item list-group-item-action">{{hostVisitors}}</a>
+            </div>
+          </div>
+        </div>
+    
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <button type="submit" [disabled]="myUserForm.invalid" class="btn btn-success">Add Visitor</button>
+          <button type="button" class="btn btn-danger" (click)="cancelEntry()">Cancel</button>
+        </div>
+      </div>
+
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div id="loggedDiv">
+
+  <div class="leftDiv">
+    <div class="leftList lists">
+      <ul class="ulHeader uls">
+          <li class="liHeader">Visitor Name</li>
+          <li class="liHeader">Visitor Company</li>
+          <li class="liHeader">Date</li>
+          <li class="liHeader">Time</li>
+          <li class="liHeader">Host by</li>
+          <li class="liHeader">Host Company</li>
+      </ul>
+      <ul (click)="selectVisitor(selectedUL, i)" #selectedUL class="ulGenerated uls" *ngFor="let visitor of visitors; let i = index" >
+          <!-- <li>{{visitor.id}}</li> -->
+          <li>{{visitor.visitorName}}</li>
+          <li>{{visitor.visitorCompany}}</li>
+          <li>{{visitor.dateExpected}}</li>
+          <li>{{visitor.timeExpected}}</li>
+          <li>{{visitor.hostName}}</li>
+          <li>{{visitor.hostCompany}}</li>
+      </ul>
+    </div>
+
+    <div class="commands">
+      <ul class="ulCommands">
+        <li class="liCommands"><a (click)="onLogLogged()"><i class="fas fa-sign-in-alt"></i></a></li>
+        <li class="liCommands"><a (click)="onEditLogged()"><i class="fas fa-edit"></i></a></li>
+        <li class="liCommands"><a (click)="onPrintLogged()"><i class="fas fa-print"></i></a></li>
+        <li class="liCommands"><a (click)="onDeleteLogged()"><i class="fas fa-trash-alt"></i></a></li>
+      </ul>
+    </div>
+
+  </div> <!-- left ends -->
+  
+</div>

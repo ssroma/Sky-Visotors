@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 // importing moment.js a labrary to help with date and time format.
 import * as moment from 'moment'
 import { Prebook } from '../model/prebook.model';
+import { PrebooksService } from '../services/prebooks.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-preebook',
@@ -13,7 +16,7 @@ import { Prebook } from '../model/prebook.model';
 })
 export class PreebookComponent implements OnInit {
 
-  visitorCategory = ['Visitor', 'Contractor', 'Subcontractor'];
+  visitorCategory = ['', 'Visitor', 'Contractor', 'Subcontractor'];
   locations = [
     { id: 1, company: 'Park House' }, 
     { id: 2, company: 'Brown Brothers Harrimwn' }, 
@@ -26,36 +29,45 @@ export class PreebookComponent implements OnInit {
   ];
   todaysDate: string;
   todaysTime: string;
+  todaysTimePlus: string;
+
   prebookingArray: Prebook;
 
   // form
   prebookForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private prebookService: PrebooksService
+  ) { }
 
   ngOnInit() {
     this.todaysDate = this.getTodaysDate();
     this.todaysTime = this.getTodaysTime();
+    this.todaysTimePlus = this.getTodaysTimePlus();
     this.myForm();
 
   }
-
+// PreebookForm.
   myForm(){
     this.prebookForm = this.fb.group({ 
-      hostInput: [null, Validators.required ],
-      visitCategory: ['Visitor', Validators.required],
+      hostInput: [null, Validators.required],
+      visitCategory: [null, Validators.required],
       dateTime: this.fb.group({
-        dateExpected: [this.todaysDate, Validators.required],
-        timeExpected: [this.todaysTime, Validators.required],
-        dateEnd: [this.todaysDate, Validators.required],
-        timeEnd: [null, Validators.required]
+        dateExpected: [this.todaysDate],
+        timeExpected: [this.todaysTime],
+        dateEnd: [this.todaysDate],
+        timeEnd: [this.todaysTimePlus]
       }),
-      location: this.fb.array([])
+      location: this.fb.array([], Validators.required)
     });
 
     this.addControls();
   }
 
+// getters fo the form's field.
   get hostInput(){
     return this.prebookForm.get('hostInput');
   }
@@ -86,26 +98,25 @@ export class PreebookComponent implements OnInit {
   get location(){
     return this.prebookForm.get('location') as FormArray
   }
-  
+// creating a formControl to be add to the formArray.
   addControls(){
     this.locations.map((bjs, i) => {
-        const control = new FormControl( i === 0);
+        const control = new FormControl(null, [Validators.required, this.checkBoxCheck]);
         this.location.push( control );
     })
   }
 
   onSubmit(){
-    console.log(this.prebookForm.value);
+    
     const getLocationsName = () => {
       let arrayValue = [];
-      this.prebookForm.get('location').value.forEach( (element, i) => {
+      this.prebookForm.get('location').value.forEach( (element: any, i: number) => {
         if( element === true ){
           arrayValue.push( this.locations[i].company);
         }
       });
       return arrayValue;
     }
-    
 
     const hostName = this.hostInput.value;
     const visitCategory = this.visitCategory.value;
@@ -116,16 +127,46 @@ export class PreebookComponent implements OnInit {
     const location = getLocationsName();
 
     this.prebookingArray = new Prebook(hostName, visitCategory, expectedDate, expectedTime, endDate, endTime, location);
-    
+    this.prebookService.addPrebook(this.prebookingArray);
+    //console.log(this.prebookingArray);
+    // navagate away. 
+    this.router.navigate(['user'] );
   }
 
+// get the Date
   getTodaysDate(){
     let today = moment().format('YYYY-MM-DD'); //new Date().toISOString().substr(0, 10);
     return today;
   }
-
+// get the time 
   getTodaysTime(){
-    let time = moment().format('hh:mm');
+    let time = moment().format('HH:mm');
     return time;
   }
+// get the time plus 2 hours
+  getTodaysTimePlus(){
+    let time = moment((new Date())).add(2, 'hour').format('HH:mm');
+    return time;
+  }
+// update the changes on checkBoxCheck a custom validation.
+  resetValidations(){
+    this.location.updateValueAndValidity();
+    this.location.controls.map(i =>{
+      i.updateValueAndValidity();
+    })
+  }
+// custom validator.
+  checkBoxCheck(control: AbstractControl){
+    if(control.value === null){
+      //console.log( control.value )
+    }else{
+      const local = (<FormArray>control.root.get('location'));
+      for(let i = 0; i < local.controls.length; i++ ){
+        local.controls[i].clearValidators();
+      }
+    }
+    return null;
+  }
+
+
 }

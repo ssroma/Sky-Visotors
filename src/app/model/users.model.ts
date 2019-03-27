@@ -6,6 +6,7 @@ export class Users {
         private userName: string,
         private company: string,
         private email: string,
-        private phone: string
+        private phone: string, 
+        private hostName: string
     ){}
 }

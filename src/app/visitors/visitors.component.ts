@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Visitor } from './../model/visitor.model';
+import { VisitorService } from '../services/visitor.service';
 
 @Component({
   selector: 'app-visitors',
@@ -8,12 +10,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisitorsComponent implements OnInit {
 
-  
-
-  constructor() { }
+  constructor(){}
 
   ngOnInit() {
-    
+
   }
 
 }

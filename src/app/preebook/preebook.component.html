@@ -2,6 +2,8 @@
 <div class="row">
   <div class="col-md-12">
 
+    <h3>Prebooking</h3>
+
     <form [formGroup]="prebookForm"  (ngSubmit)="onSubmit()">
 
       <div class="form-group">
@@ -10,7 +12,7 @@
       </div>
 
       <div class="form-group">
-        <label for="visitCategory">Visit Category</label>
+        <label class="control-label" for="visitCategory">Visit Category</label>
         <select id="visitCategory" class="form-control" formControlName="visitCategory">
           <option  *ngFor="let visitorValeu of visitorCategory" 
             [value]="visitorValeu">{{ visitorValeu }}
@@ -56,17 +58,17 @@
         </div>
       </div> <!-- date & time group ends -->
 
-      
-      <div class="form-group" formArrayName="location">
+      <div class="form-group" >
         <label for="locations">Location</label>
-        <div class="form-control checkbox-control">
+        <div class="form-control checkbox-control group-location" formArrayName="location">
           
           <div class="form-check" *ngFor="let loc of location.controls; let i = index">
             <input 
-              class="form-check-input" 
+              class="form-check-input ckeck-input" 
               [id]="i"
               type="checkbox"
               [formControlName]="i"
+              (change)="resetValidations()"
             > 
             <label class="form-check-label" [for]="i">{{ locations[i].company }}</label>
           </div>
@@ -75,8 +77,10 @@
       </div>
 
       <div class="row">
-        <button type="button" class="btn btn-danger">Cancel</button>
-        <button type="submit" class="btn btn-success">Visitor</button>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-danger">Cancel</button>
+            <button type="submit" [disabled]="prebookForm.invalid" class="btn btn-success">Visitor</button>
+        </div>
       </div>
 
     </form>
