@@ -3,10 +3,10 @@
 export class Users {
 
     constructor(
-        private userName: string,
-        private company: string,
-        private email: string,
-        private phone: string, 
-        private hostName: string
+        public userName: string,
+        public company: string,
+        public email: string,
+        public phone: string, 
+        public hostName: string
     ){}
 }

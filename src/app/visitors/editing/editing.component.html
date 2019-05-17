@@ -1,0 +1,50 @@
+<div class="row editingRwDiv">
+    <div class="col-md-12">
+  
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" >
+  
+        <div class="form-group">
+          <label for="visitorName">Visitor's Name</label>
+          <input type="text" class="form-control" id="visitorName" name="visitorName" ngModel >
+        </div>
+  
+        <div class="form-group">
+          <label for="visitorCompany">Visitor's Company</label>
+          <input type="text" class="form-control" id="visitorCompany" name="visitorCompany" ngModel >
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="dateExpected">Time & Date</label>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="date" id="dateExpected" name="dateExpected" ngModel >
+              </div>
+              <div class="col-md-5">
+                <input type="time" id="timeExpected" name="timeExpected" ngModel>
+              </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="hostName">Host's Name</label>
+          <input type="text" class="form-control" id="hostName" name="hostName" ngModel>
+        </div>
+  
+        <div class="form-group">
+          <label for="hostCompany">Host's Company</label>
+          <input type="text" class="form-control" id="hostCompany" name="hostCompany" ngModel>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success">Edit Visitor</button>
+            <button type="button" class="btn btn-danger" (click)="cancelEditing()">Cancel</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+  </div>

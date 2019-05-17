@@ -25,6 +25,7 @@ export class PrebookUserComponent implements OnInit, OnDestroy {
   visitedThisHost = [];
   visitedThisHostAmount: number;
   destroySubscription: Subscription;
+  reVisiting: Users = null;
 
   constructor(
     private userService: UsersService,
@@ -103,19 +104,33 @@ export class PrebookUserComponent implements OnInit, OnDestroy {
     this.visitorService.addVisitor(addVisitor);
   }
 
+  populateWithFormWithUserCredentials(visitor: string){
+    this.reVisiting = this.userService.getUser(visitor);
+    this.myUserForm.setValue({
+      userName : [this.reVisiting['userName'] ],
+      companyName: [this.reVisiting['company']],
+      userEmail: [this.reVisiting['email']],
+      userPhone: [this.reVisiting['phone']],
+      hostName: [this.reVisiting['hostName']],
+    })
+  }
+
   onSubmit(){
     //console.log(this.myUserForm);
     // add creatingVisitor here
     this.creatingVisitor();
     // add creating users here 
-    this.creatingUsers();
+    if( this.reVisiting == null ){
+      this.creatingUsers();
+    }
+    
     this.router.navigate(['visitors'])
   }
 
   lookingForVisitor(){
     let users = this.userService.getUsers();
     for(let user of users){
-      if(user['hostName'].toLocaleUpperCase().trim() === this.hostNameValue.toLocaleUpperCase().trim()){
+      if(user['hostName'].toUpperCase().trim() === this.hostNameValue.toUpperCase().trim()){
         this.visitedThisHost.push( user['userName']);
       } 
     }

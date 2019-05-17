@@ -168,5 +168,9 @@ export class PreebookComponent implements OnInit {
     return null;
   }
 
+  onCancel(){
+    this.router.navigate( ['/'] );
+  }
+
 
 }

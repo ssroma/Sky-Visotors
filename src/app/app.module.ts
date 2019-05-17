@@ -9,6 +9,7 @@ import { NavComponent } from './nav/nav.component';
 import { PrebooksService } from './services/prebooks.service';
 import { LoggedComponent } from './visitors/logged/logged.component';
 import { LoggedOutComponent } from './visitors/logged-out/logged-out.component';
+import { EditingComponent } from './visitors/editing/editing.component';
 //import { PrebookUserComponent } from './preebook/prebook-user/prebook-user.component';
 //import { UsersComponent } from './users/users.component';
 //import { VisitorsComponent } from './visitors/visitors.component';
@@ -20,7 +21,8 @@ import { LoggedOutComponent } from './visitors/logged-out/logged-out.component';
     NavComponent,
     components,
     LoggedComponent,
-    LoggedOutComponent, // UsersComponent, VisitorsComponent, PreebookComponent,
+    LoggedOutComponent,
+    EditingComponent, // UsersComponent, VisitorsComponent, PreebookComponent,
   
   ],
   imports: [

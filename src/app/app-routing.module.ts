@@ -1,3 +1,5 @@
+import { LoggedOutComponent } from './visitors/logged-out/logged-out.component';
+import { EditingComponent } from './visitors/editing/editing.component';
 import { UsersComponent } from './users/users.component';
 import { VisitorsComponent } from './visitors/visitors.component';
 import { NgModule } from '@angular/core';
@@ -7,7 +9,10 @@ import { PrebookUserComponent } from './preebook/prebook-user/prebook-user.compo
 
 const routes: Routes = [
   { path: '', redirectTo: '/visitors', pathMatch: 'full' },
-  { path: 'visitors', component: VisitorsComponent },
+  { path: 'visitors', component: VisitorsComponent, children: [
+    { path: '', component: LoggedOutComponent },
+    { path: ':id', component: EditingComponent },
+  ] },
   { path: 'prebook', component: PreebookComponent},
   {path: 'user', component: PrebookUserComponent},
   { path: 'users', component: UsersComponent }

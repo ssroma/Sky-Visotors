@@ -1,11 +1,12 @@
 
 export class Visitor {
+    
     constructor(
-        private visitorName: string,
-        private visitorCompany: string,
-        private hostName: string,
-        private hostCompany: string,
-        private dateExpected: string,
-        private timeExpected: string
+        public visitorName: string,
+        public visitorCompany: string,
+        public hostName: string,
+        public hostCompany: string,
+        public dateExpected: string,
+        public timeExpected: string
     ){}
 }

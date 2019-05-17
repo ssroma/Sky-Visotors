@@ -2,12 +2,12 @@
 
 export class Prebook {
     constructor(
-        private hostName: string,
-        private visitCategory: string,
-        private dateExpected: string,
-        private timeExpected: string,
-        private dateEnd: string,
-        private timeEnd: string,
-        private location: Array<any>,
+        public hostName: string,
+        public visitCategory: string,
+        public dateExpected: string,
+        public timeExpected: string,
+        public dateEnd: string,
+        public timeEnd: string,
+        public location: Array<any>,
     ){ }
 }

@@ -2,7 +2,7 @@
 <div class="rowVisitor">
 
   <header>
-    <h3>Visitor</h3>
+    <h1>Visitor</h1>
     <div class="search">
         <form>
           <div class="form-group">
@@ -17,11 +17,15 @@
   </header>
 
   <div class="logged">
+    <h2>Vitors Expected</h2>
+    <br class="br" />
     <app-logged></app-logged>
   </div>
 
   <div class="loggedOut">
-    <app-logged-out></app-logged-out>
+    <h2>{{ LoggerdOrEdit }}</h2>
+    <br class="br" />   
+    <router-outlet></router-outlet>
   </div>
 
   <!-- <div class="leftDiv"> 

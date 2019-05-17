@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Subject } from 'rxjs';
 import { Visitor } from './../model/visitor.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +9,8 @@ import { Visitor } from './../model/visitor.model';
 export class VisitorService {
 
   updateVisitorsChange = new Subject<Visitor[]>();
-
+  editingVisitor = new Subject<number>();
+  
   visitors: Visitor[] = [
     new Visitor( 'Joaquim Amago', 'Toros', 'Steve Breaky', 'Ultimate', '25-03-2019', '09:00')
   ]
@@ -22,6 +23,20 @@ export class VisitorService {
 
   addVisitor(visitor: Visitor){
     this.visitors.push(visitor);
+    this.updateAll();
+  }
+  
+  getVisitor(index: number){
+    return this.visitors[index];
+  }
+
+  updateVisitor(index: number, newLogged: Visitor){
+
+    if( this.visitors[index]  ){
+      this.visitors[index] = newLogged;
+    }else{
+      this.visitors.push(newLogged);
+    }
     this.updateAll();
   }
 

@@ -77,9 +77,9 @@
       </div>
 
       <div class="row">
-        <div class="col-md-12">
-            <button type="button" class="btn btn-danger">Cancel</button>
-            <button type="submit" [disabled]="prebookForm.invalid" class="btn btn-success">Visitor</button>
+        <div class="col-md-12 prebookBtns">
+            <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+            <button type="submit" [disabled]="prebookForm.invalid" class="btn btn-success">Next</button>
         </div>
       </div>
 

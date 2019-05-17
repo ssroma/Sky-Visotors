@@ -26,6 +26,17 @@ export class UsersService {
     return this.users.slice();
   }
 
+  getUser(visitorName: string){
+    let user: Users;
+    this.users.forEach( (name, i ) => {
+      if( visitorName == name.userName){
+        //console.log( `This is the userService reponse ${name.userName}` )
+        return user = name;
+      }
+    })
+    return user;
+  }
+
   addUser(users: Users){
     this.users.push(users);
   }

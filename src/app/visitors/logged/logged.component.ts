@@ -4,6 +4,7 @@ import { Logged } from './../../model/logged.model';
 import { Visitor } from 'src/app/model/visitor.model';
 import { VisitorService } from 'src/app/services/visitor.service';
 import { LoggedService } from 'src/app/services/logged.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-logged',
@@ -20,15 +21,17 @@ export class LoggedComponent implements OnInit {
 
   constructor(
     private visitorService: VisitorService,
-    private loggedService: LoggedService
-  ) { }
+    private loggedService: LoggedService,
+    private router: Router,
+    private route: ActivatedRoute
+  ){ }
 
   ngOnInit() {
     this.visitorService.updateVisitorsChange
     .subscribe((visitor: Visitor[]) => {
       this.visitors = visitor;
     })
-  this.visitors = this.visitorService.getAllVisitor();
+    this.visitors = this.visitorService.getAllVisitor();
   }
 
   selectVisitor(selected: HTMLElement, id: number){
@@ -45,9 +48,8 @@ export class LoggedComponent implements OnInit {
     })
     
     selected.childNodes.forEach( (li) => {
-        liText.push(li.textContent);
-       
-    })
+        liText.push(li.textContent); 
+    });
     this.toLoggedOut = new Logged( liText[0], liText[1], liText[4], liText[5], liText[2], liText[3] ); 
     this.toDeletefromVisitor = id;
   }
@@ -56,11 +58,17 @@ export class LoggedComponent implements OnInit {
     if(this.activateButton){
       this.selectedUl.classList.remove("ulSelected");
       this.loggedService.addToLog(this.toLoggedOut);
-      console.log( this.toDeletefromVisitor );
       this.visitorService.removeVisitorLogged(this.toDeletefromVisitor);
       this.activateButton = false;
+    }
+  }
 
-
+  onEditLogged(){
+    //this.visitorService.editingVisitor.next(this.toDeletefromVisitor);
+    if(this.activateButton){
+      this.selectedUl.classList.remove("ulSelected");
+      this.router.navigate( [this.toDeletefromVisitor], { relativeTo: this.route} );
+      this.activateButton = false;
     }
   }
 

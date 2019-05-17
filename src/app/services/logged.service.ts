@@ -25,6 +25,15 @@ export class LoggedService {
     this.updateChanges();
   }
 
+  updateLogged(index: number, newLogged: Logged){
+
+    if( this.loggeds[index]  ){
+      this.loggeds[index] = newLogged;
+    }else{
+      this.loggeds.push(newLogged);
+    }
+    this.updateChanges();
+  }
 
   updateChanges(){
     this.updateLoggedChanges.next(this.loggeds.slice());
