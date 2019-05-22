@@ -33,7 +33,7 @@ export class EditingComponent implements OnInit {
       
         if( this.id  !== null){
           this.visitorToEdit = this.visitorsServce.getVisitor(this.id);
-          // To complay with date stand.
+          // To complay with date standard.
           let day = this.visitorToEdit.dateExpected.slice(0, 2);
           let month = this.visitorToEdit.dateExpected.slice(3, 5 );
           let year = this.visitorToEdit.dateExpected.slice(6, 11 );

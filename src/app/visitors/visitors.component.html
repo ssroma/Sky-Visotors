@@ -6,7 +6,7 @@
     <div class="search">
         <form>
           <div class="form-group">
-            <label for="serach">Search (name or company</label>
+            <label for="serach">Search (name or company)</label>
             <input type="text" class="form-control">
           </div>
         </form>
@@ -19,75 +19,33 @@
   <div class="logged">
     <h2>Vitors Expected</h2>
     <br class="br" />
-    <app-logged></app-logged>
+    <app-logged (loggedToprint)="loggedInfoToPrint($event)" ></app-logged>
   </div>
 
   <div class="loggedOut">
     <h2>{{ LoggerdOrEdit }}</h2>
     <br class="br" />   
     <router-outlet></router-outlet>
+  </div> 
+
+
+<!-- to printe -->
+<div class="divCard">
+    <span class="close" (click)="closePrinting() ">X</span>
+    <div class="innerCard" #toPrint >
+      <div class="head">
+        <h4>Sky Visitor</h4>
+      <p>A Visitor Software</p>
+      </div>
+      <div class="body">
+        <h2>Visitor</h2>
+        <h3 class="name">{{ toPrintInfo.name }}</h3>
+        <p class="company">{{ toPrintInfo.company }}</p>
+        <p class="date">{{ toPrintInfo.date }}</p>
+      </div>  
+    </div>
+    <button class="btn btn-primary button" (click)="printing(toPrint)" >Print</button>
   </div>
+  <!-- to printe -->
 
-  <!-- <div class="leftDiv"> 
-
-    <div class="leftList lists">
-      <ul class="ulHeader uls">
-          <li class="liHeader">Visitor Name</li>
-          <li class="liHeader">Visitor Company</li>
-          <li class="liHeader">Date</li>
-          <li class="liHeader">Time</li>
-          <li class="liHeader">Host by</li>
-          <li class="liHeader">Host Company</li>
-      </ul>
-      <ul class="ulGenerated uls" *ngFor="let visitor of visitors; let i = index" >
-          <li>{{visitor.visitorName}}</li>
-          <li>{{visitor.visitorCompany}}</li>
-          <li>{{visitor.dateExpected}}</li>
-          <li>{{visitor.timeExpected}}</li>
-          <li>{{visitor.hostName}}</li>
-          <li>{{visitor.hostCompany}}</li>
-      </ul>
-    </div>
-
-    <div class="commands">
-      <ul class="ulCommands">
-        <li class="liCommands"><a href="#"><i class="fas fa-sign-in-alt"></i></a></li>
-        <li class="liCommands"><a href="#"><i class="fas fa-edit"></i></a></li>
-        <li class="liCommands"><a href="#"><i class="fas fa-print"></i></a></li>
-        <li class="liCommands"><a href="#"><i class="fas fa-trash-alt"></i></a></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="rightDiv">
-
-    <div class="rightList lists">
-      <ul class="ulHeader uls">
-          <li class="liHeader">Visitor Name</li>
-          <li class="liHeader">Visitor Company</li>
-          <li class="liHeader">Date</li>
-          <li class="liHeader">Time</li>
-          <li class="liHeader">Host by</li>
-          <li class="liHeader">Host Company</li>
-      </ul>
-      <ul class="ulGenerated uls" *ngFor="let visitor of visitors; let i = index" >
-        <li>{{visitor.visitorName}}</li>
-        <li>{{visitor.visitorCompany}}</li>
-        <li>{{visitor.dateExpected}}</li>
-        <li>{{visitor.timeExpected}}</li>
-        <li>{{visitor.hostName}}</li>
-        <li>{{visitor.hostCompany}}</li>
-      </ul>
-    </div>
-    <div class="commands">
-      <ul class="ulCommands">
-        <li class="liCommands"><a href="#"><i class="fas fa-sign-out-alt"></i></a></li>
-        <li class="liCommands"><a href="#"><i class="fas fa-edit"></i></a></li>
-        <li class="liCommands"><a href="#"><i class="fas fa-trash-alt"></i></a></li>
-      </ul>
-    </div>
-
-  </div>  -->
-  
 </div> <!-- rowVisitor  -->

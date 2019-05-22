@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { Logged } from './../../model/logged.model';
 import { Visitor } from 'src/app/model/visitor.model';
@@ -18,6 +18,14 @@ export class LoggedComponent implements OnInit {
   selectedUl: HTMLElement;
   toLoggedOut: Logged;
   toDeletefromVisitor: number
+
+  toPrintInfo = {
+    name: '',
+    company: '',
+    date: ''
+  }
+  @Output() loggedToprint = new EventEmitter<any>();
+    
 
   constructor(
     private visitorService: VisitorService,
@@ -71,5 +79,32 @@ export class LoggedComponent implements OnInit {
       this.activateButton = false;
     }
   }
+
+  onPrintLogged(){
+    const toPrint = document.querySelector('.divCard');
+    if(this.activateButton){
+      this.selectedUl.classList.remove("ulSelected");
+      //set the details to be sento to parent component div to be printed.
+      this.toPrintInfo.name = this.toLoggedOut.visitorName;
+      this.toPrintInfo.company = this.toLoggedOut.visitorCompany;
+      this.toPrintInfo.date = this.toLoggedOut.dateExpected;
+      // Emit the event to the parent.
+      this.loggedToprint.emit(this.toPrintInfo);
+      toPrint.classList.toggle('showHide');
+      this.activateButton = false;
+    }
+  }
+
+  onDeleteLogged(){
+    if(this.activateButton){
+      this.selectedUl.classList.remove("ulSelected");
+      this.activateButton = false;
+      this.visitorService.removeVisitorLogged(this.toDeletefromVisitor);
+      console.log( "Will b deleted." )
+    }
+  }
+
+
+
 
 }

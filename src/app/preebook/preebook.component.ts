@@ -155,7 +155,7 @@ export class PreebookComponent implements OnInit {
       i.updateValueAndValidity();
     })
   }
-// custom validator.
+// custom validator for the Checkbox.
   checkBoxCheck(control: AbstractControl){
     if(control.value === null){
       //console.log( control.value )
