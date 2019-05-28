@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Visitor } from './../model/visitor.model';
-import { VisitorService } from '../services/visitor.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoggedService } from './../services/logged.service';
+import { Logged } from './../model/logged.model';
 
 @Component({
   selector: 'app-visitors',
@@ -12,12 +12,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class VisitorsComponent implements OnInit {
 
   LoggerdOrEdit: string;
-  
+  //logged: Logged[];
   toPrintInfo = {};
-  
+  //loggedToLoggedOut: Logged[] = [];
+
+
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private loggedService: LoggedService
   ){}
 
   ngOnInit() {
@@ -29,9 +32,28 @@ export class VisitorsComponent implements OnInit {
       }else{
         this.LoggerdOrEdit = 'Editing Visitor';
       }
-      
-    })
+    }) 
+
+    // this.loggedService.updateLoggedChanges
+    //   .subscribe( (log) => { 
+    //     this.logged = log;
+    //   });
   }
+
+  // Search logged In client 
+
+  onSearchInput(searchInput: string){
+    
+    // this.logged.map( name => {
+    //   if( searchInput == name.visitorName || searchInput == name.visitorCompany ){
+    //     this.loggedToLoggedOut.push(name);
+    //   } 
+    // })
+    this.loggedService.fromServiceToLoggedOut( searchInput );
+  }
+
+
+  // Printing finctions. 
 
   loggedInfoToPrint($event: Object){
       this.toPrintInfo = $event;

@@ -60,4 +60,8 @@ export class EditingComponent implements OnInit {
     this.router.navigate(['../'], {relativeTo: this.route } );
   }
 
+  cancelEditing(){
+    this.router.navigate(['../'], {relativeTo: this.route } );
+  }
+
 }

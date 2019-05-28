@@ -11,7 +11,7 @@
           <li class="liHeader">Host by</li>
           <li class="liHeader">Host Company</li>
       </ul>
-      <ul class="ulGenerated uls" *ngFor="let log of logged; let i = index" >
+      <ul (click)="selectVisitor(selectedUL, i)" #selectedUL class="ulGenerated uls" *ngFor="let log of logged; let i = index" >
         <li>{{log.visitorName}}</li>
         <li>{{log.visitorCompany}}</li>
         <li>{{log.dateExpected}}</li>
@@ -22,9 +22,9 @@
     </div>
     <div class="commands">
       <ul class="ulCommands">
-        <li class="liCommands"><a ><i class="fas fa-sign-out-alt"></i></a></li>
-        <li class="liCommands"><a ><i class="fas fa-edit"></i></a></li>
-        <li class="liCommands"><a ><i class="fas fa-trash-alt"></i></a></li>
+        <li class="liCommands"><a (click)="onSignOut()" title="Sing Out"><i class="fas fa-sign-out-alt"></i></a></li>
+        <!-- <li class="liCommands"><a ><i class="fas fa-edit"></i></a></li> -->
+        <li class="liCommands"><a (click)="onDelete()" title="Delete"><i class="fas fa-trash-alt"></i></a></li>
       </ul>
     </div>
     

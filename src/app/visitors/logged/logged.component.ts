@@ -100,7 +100,6 @@ export class LoggedComponent implements OnInit {
       this.selectedUl.classList.remove("ulSelected");
       this.activateButton = false;
       this.visitorService.removeVisitorLogged(this.toDeletefromVisitor);
-      console.log( "Will b deleted." )
     }
   }
 

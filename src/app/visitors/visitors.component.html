@@ -6,12 +6,12 @@
     <div class="search">
         <form>
           <div class="form-group">
-            <label for="serach">Search (name or company)</label>
-            <input type="text" class="form-control">
+            <label for="serach">Search by name or company </label>
+            <input type="text" #searchInput class="form-control">
           </div>
         </form>
         <div>
-          <button class="btn btn-primary myBtn">search</button>
+          <button class="btn btn-primary myBtn" (click)="onSearchInput(searchInput.value)" >search</button>
         </div>
     </div>
   </header>

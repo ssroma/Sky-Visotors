@@ -12,7 +12,11 @@ export class VisitorService {
   editingVisitor = new Subject<number>();
   
   visitors: Visitor[] = [
-    new Visitor( 'Joaquim Amago', 'Toros', 'Steve Breaky', 'Ultimate', '25-03-2019', '09:00')
+    new Visitor( 'Joaquim Amago', 'Toros', 'Jonas Bread', 'The Collect', '25-03-2019', '09:00'),
+    new Visitor( 'Amadeu Antunes', 'Graff\'s', 'Antonio Nobrega', 'Tontos', '25-04-2019', '11:00'),
+    new Visitor( 'Amadeu Antunes', 'Graff\'s', 'Antonio Nobrega', 'Tontos', '25-04-2019', '11:00'),
+    new Visitor( 'Junio Antunes', 'Graff\'s', 'Antonio Nobrega', 'Tontos', '25-04-2019', '11:00'),
+    new Visitor( 'Joaquim Antunes', 'Graff\'s', 'Antonio Nobrega', 'Tontos', '25-04-2019', '11:00'),
   ]
 
   constructor() { }
